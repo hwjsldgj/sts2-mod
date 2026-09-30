@@ -427,3 +427,23 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# ===== Godot =====
+.godot/
+*.import
+export_presets.cfg
+.mono/
+*.translation
+
+# ===== 项目构建产物 =====
+dist/
+build/
+out/
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== 临时文件 =====
+*.bak

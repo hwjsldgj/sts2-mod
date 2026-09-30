@@ -1,0 +1,8 @@
+# 全局默认审查人
+* @hwjsldgj
+
+# 核心模块必须由决策负责人审查
+/src/Core/ @hwjsldgj
+/src/Adapters/ @hwjsldgj
+/.github/workflows/ @hwjsldgj
+/docs/decisions.md @hwjsldgj

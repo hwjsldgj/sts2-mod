@@ -1,0 +1,8 @@
+{
+    "id": "sts2-mod",
+    "name": "STS2 Mod",
+    "version": "0.0.1",
+    "author": "hwjsldgj",
+    "description": "杀戮尖塔2模组",
+    "entry": "Sts2Mod.ModEntry"
+  }

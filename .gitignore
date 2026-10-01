@@ -324,8 +324,10 @@ node_modules/
 # Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
 *.vbw
 
-# Visual Studio 6 workspace and project file (working project files containing files to include in project)
+# Visual Studio 6 auto-generated project file (contains which files were open etc.)
 *.dsw
+
+# Visual Studio 6 auto-generated project files
 *.dsp
 
 # Visual Studio 6 technical files
@@ -427,9 +429,9 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
-# ===== Godot =====
-.mono/
-*.translation
+
+# ===== Godot 4 =====
+.godot/
 
 # ===== 项目构建产物 =====
 dist/

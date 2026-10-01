@@ -1,5 +1,5 @@
 <Project Sdk="Godot.NET.Sdk/4.5.1">
-    <Import Project=".\local.props" Condition="Exists('.\local.props')"/>
+    <Import Project=".\local.props" Condition="Exists('.\local.props')" />
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -20,95 +20,103 @@
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
         <!-- 本机测试时 RitsuLib 包/构建逻辑会使用这个目录把 RitsuLib 部署到游戏 mods/STS2-RitsuLib 。 -->
         <RitsuLibDeployDir Condition="'$(RitsuLibDeployDir)' == ''">$(Sts2Dir)\mods\STS2-RitsuLib</RitsuLibDeployDir>
+        <!-- 编译所针对的游戏 API 版本，对应 $(RitsuLibDir)\compat\<版本>。两台机器一致，不需要放进 local.props。 -->
+        <RitsuLibReferenceTarget Condition="'$(RitsuLibReferenceTarget)' == ''">0.111.0</RitsuLibReferenceTarget>
         <CopyModOnBuild Condition="'$(CopyModOnBuild)' == ''">true</CopyModOnBuild>
         <RunPckExport Condition="'$(RunPckExport)' == '' and '$(DesignTimeBuild)' != 'true'">true</RunPckExport>
         <RunPckExport Condition="'$(RunPckExport)' == ''">false</RunPckExport>
     </PropertyGroup>
 
+    <!-- RitsuLib 目录引用：用本机安装目录（local.props 的 RitsuLibDir）自带的 RitsuLib.References.props
+         一次性引入 STS2-RitsuLib / Runtime / Shared / Ui / Settings 五个程序集，仓库内不写死任何本机路径。 -->
+    <Import Project="$(RitsuLibDir)\RitsuLib.References.props" Condition="'$(RitsuLibDir)' != '' and Exists('$(RitsuLibDir)\RitsuLib.References.props')" />
+
     <ItemGroup>
-        <PackageReference Include="Krafs.Publicizer" Version="2.2.1" PrivateAssets="all"/>
-        <!-- 主线 RitsuLib（STS2 0.105.0+），跟踪 NuGet 最新版本。兼容分支和 manifest 版本对齐规则见 README。 -->
-        <PackageReference Include="STS2.RitsuLib" Version="0.6.3" GeneratePathProperty="true"/>
+        <PackageReference Include="Krafs.Publicizer" Version="2.2.1" PrivateAssets="all" />
+        <!-- 主线 RitsuLib（STS2 0.105.0+）：只用于本机部署与 manifest 版本同步。
+             编译引用交给 RitsuLibDir 指向的本机 RitsuLib 安装目录（见下方 Import），避免两份同版本程序集互相遮蔽。 -->
+        <PackageReference Include="STS2.RitsuLib" Version="0.6.3" GeneratePathProperty="true" ExcludeAssets="compile" />
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
+        <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false" />
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True"/>
-        <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True"/>
-        <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True"/>
+        <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True" />
+        <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True" />
+        <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True" />
     </ItemGroup>
 
     <ItemGroup>
         <!-- 中文：排除 Godot、IDE 和构建输出目录，避免本地生成文件参与编译。 -->
-        <Compile Remove=".godot/**;.idea/**;.vs/**;bin/**;obj/**"/>
-        <EmbeddedResource Remove=".godot/**;.idea/**;.vs/**;bin/**;obj/**"/>
-        <None Remove=".godot/**;.idea/**;.vs/**;bin/**;obj/**"/>
+        <Compile Remove=".godot/**;.idea/**;.vs/**;bin/**;obj/**" />
+        <EmbeddedResource Remove=".godot/**;.idea/**;.vs/**;bin/**;obj/**" />
+        <None Remove=".godot/**;.idea/**;.vs/**;bin/**;obj/**" />
 
-        <AdditionalFiles Include="Molin/localization/**/*.json"/>
+        <AdditionalFiles Include="Molin/localization/**/*.json" />
 
-        <Compile Remove="Molin/**"/>
-        <EmbeddedResource Remove="Molin/**"/>
-        <None Include="Molin/**"/>
-        <None Include="Molin.json"/>
-        <None Include="project.godot"/>
-        <None Include="export_presets.cfg"/>
-        <None Include=".gitignore"/>
-        <None Include="local.props.template"/>
+        <Compile Remove="Molin/**" />
+        <EmbeddedResource Remove="Molin/**" />
+        <None Include="Molin/**" />
+        <None Include="Molin.json" />
+        <None Include="project.godot" />
+        <None Include="export_presets.cfg" />
+        <None Include=".gitignore" />
+        <None Include="local.props.template" />
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="local.props" Condition="Exists('local.props')"/>
+        <Content Include="local.props" Condition="Exists('local.props')" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Molin\images\cards\"/>
-        <Folder Include="Molin\images\characters\"/>
-        <Folder Include="Molin\images\relics\"/>
-        <Folder Include="Molin\scenes\characters\"/>
+        <Folder Include="Molin\images\cards\" />
+        <Folder Include="Molin\images\characters\" />
+        <Folder Include="Molin\images\relics\" />
+        <Folder Include="Molin\scenes\characters\" />
     </ItemGroup>
 
     <Target Name="ValidateSts2GameInstall" BeforeTargets="ResolveAssemblyReferences">
-        <Error Condition="!Exists('$(Sts2DataDir)\sts2.dll')" Text="Could not find sts2.dll under '$(Sts2DataDir)'. Copy local.props.template to local.props and set Sts2Dir/Sts2DataDir for your local game install."/>
+        <Error Condition="!Exists('$(Sts2DataDir)\sts2.dll')" Text="Could not find sts2.dll under '$(Sts2DataDir)'. Copy local.props.template to local.props and set Sts2Dir/Sts2DataDir for your local game install." />
+    </Target>
+
+    <Target Name="ValidateRitsuLibReferences" BeforeTargets="ResolveAssemblyReferences">
+        <Error Condition="'$(RitsuLibDir)' == ''" Text="RitsuLibDir is not set. Set RitsuLibDir in local.props to your local RitsuLib installation folder (the one containing RitsuLib.References.props, compat/ and shared/), or pass /p:RitsuLibDir=&lt;path&gt;." />
+        <Error Condition="!Exists('$(RitsuLibDir)\RitsuLib.References.props')" Text="Could not find RitsuLib.References.props under '$(RitsuLibDir)'. Point RitsuLibDir at a complete RitsuLib installation folder." />
     </Target>
 
     <Target Name="CopyMod" AfterTargets="Build" Condition="'$(CopyModOnBuild)' != 'false'">
-        <MakeDir Directories="$(ModOutputDir)"/>
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)"/>
-        <Copy SourceFiles="$(MSBuildProjectDirectory)\$(MSBuildProjectName).json" DestinationFolder="$(ModOutputDir)"/>
+        <MakeDir Directories="$(ModOutputDir)" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)" />
+        <Copy SourceFiles="$(MSBuildProjectDirectory)\$(MSBuildProjectName).json" DestinationFolder="$(ModOutputDir)" />
     </Target>
 
     <Target Name="ExportPCK" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1'">
-        <Error Condition="'$(GodotExe)' == '' or !Exists('$(GodotExe)')" Text="GodotExe is required for PCK export. Copy local.props.template to local.props and set GodotExe, or build with /p:RunPckExport=false."/>
-        <MakeDir Directories="$(ModOutputDir)"/>
-        <Exec WorkingDirectory="$(MSBuildProjectDirectory)" Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1"/>
+        <Error Condition="'$(GodotExe)' == '' or !Exists('$(GodotExe)')" Text="GodotExe is required for PCK export. Copy local.props.template to local.props and set GodotExe, or build with /p:RunPckExport=false." />
+        <MakeDir Directories="$(ModOutputDir)" />
+        <Exec WorkingDirectory="$(MSBuildProjectDirectory)" Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1" />
     </Target>
 
-    <Target Name="SyncManifestDependencies" AfterTargets="Build" BeforeTargets="CopyMod"
-            Condition="'$(DesignTimeBuild)' != 'true' and '$(PkgSTS2_RitsuLib)' != ''">
+    <Target Name="SyncManifestDependencies" AfterTargets="Build" BeforeTargets="CopyMod" Condition="'$(DesignTimeBuild)' != 'true' and '$(PkgSTS2_RitsuLib)' != ''">
         <PropertyGroup>
             <RitsuLibVersion>$([System.IO.Path]::GetFileName('$(PkgSTS2_RitsuLib)'))</RitsuLibVersion>
             <ManifestFile>$(MSBuildProjectDirectory)\$(MSBuildProjectName).json</ManifestFile>
         </PropertyGroup>
         <PropertyGroup>
             <_Json>$([System.IO.File]::ReadAllText('$(ManifestFile)'))</_Json>
-            <_VersionSearchPattern>(?s)&quot;id&quot;\s*:\s*&quot;STS2-RitsuLib&quot;.*?&quot;version&quot;\s*:\s*&quot;([^&quot;]+)&quot;</_VersionSearchPattern>
-            <_VersionExtractPattern>(?s).*?&quot;id&quot;\s*:\s*&quot;STS2-RitsuLib&quot;.*?&quot;version&quot;\s*:\s*&quot;([^&quot;]+)&quot;.*</_VersionExtractPattern>
+            <_VersionSearchPattern>(?s)"id"\s*:\s*"STS2-RitsuLib".*?"version"\s*:\s*"([^"]+)"</_VersionSearchPattern>
+            <_VersionExtractPattern>(?s).*?"id"\s*:\s*"STS2-RitsuLib".*?"version"\s*:\s*"([^"]+)".*</_VersionExtractPattern>
             <_HasRitsuLibVersion>$([System.Text.RegularExpressions.Regex]::IsMatch('$(_Json)', '$(_VersionSearchPattern)'))</_HasRitsuLibVersion>
             <_CurrentRitsuLibVersion Condition="'$(_HasRitsuLibVersion)' == 'True'">$([System.Text.RegularExpressions.Regex]::Replace('$(_Json)', '$(_VersionExtractPattern)', '$1'))</_CurrentRitsuLibVersion>
             <_ManifestNeedsUpdate>false</_ManifestNeedsUpdate>
             <_ManifestNeedsUpdate Condition="'$(_CurrentRitsuLibVersion)' != '' and '$(_CurrentRitsuLibVersion)' != '$(RitsuLibVersion)'">true</_ManifestNeedsUpdate>
         </PropertyGroup>
-        <Error Condition="'$(_HasRitsuLibVersion)' != 'True'"
-               Text="Could not find dependencies[STS2-RitsuLib].version in '$(ManifestFile)'."/>
-        <Message Importance="High" Condition="'$(_ManifestNeedsUpdate)' == 'true'"
-                 Text="Sync STS2-RitsuLib manifest dependency: $(_CurrentRitsuLibVersion) -> $(RitsuLibVersion)"/>
-        <Message Importance="Low" Condition="'$(_ManifestNeedsUpdate)' != 'true'"
-                 Text="STS2-RitsuLib manifest dependency already matches $(RitsuLibVersion)."/>
+        <Error Condition="'$(_HasRitsuLibVersion)' != 'True'" Text="Could not find dependencies[STS2-RitsuLib].version in '$(ManifestFile)'." />
+        <Message Importance="High" Condition="'$(_ManifestNeedsUpdate)' == 'true'" Text="Sync STS2-RitsuLib manifest dependency: $(_CurrentRitsuLibVersion) -&gt; $(RitsuLibVersion)" />
+        <Message Importance="Low" Condition="'$(_ManifestNeedsUpdate)' != 'true'" Text="STS2-RitsuLib manifest dependency already matches $(RitsuLibVersion)." />
         <PropertyGroup Condition="'$(_ManifestNeedsUpdate)' == 'true'">
-            <_Pattern>(?s)(&quot;STS2-RitsuLib&quot;.*?&quot;version&quot;\s*:\s*&quot;)[^&quot;]+(&quot;)</_Pattern>
+            <_Pattern>(?s)("STS2-RitsuLib".*?"version"\s*:\s*")[^"]+(")</_Pattern>
             <_Replacement>${1}$(RitsuLibVersion)${2}</_Replacement>
             <_Updated>$([System.Text.RegularExpressions.Regex]::Replace('$(_Json)', '$(_Pattern)', '$(_Replacement)'))</_Updated>
         </PropertyGroup>

@@ -1,11 +1,19 @@
 <Project>
   <PropertyGroup>
-    <!-- 复制本文件为 local.props 后，把下面两项改成你的本机路径。 -->
+    <!-- 复制本文件为 local.props 后，把下面几项改成你的本机路径。 -->
     <Sts2Dir>PATH_TO_STEAM/steamapps/common/Slay the Spire 2</Sts2Dir>
     <Sts2DataDir>$(Sts2Dir)/data_sts2_windows_x86_64</Sts2DataDir>
 
     <!-- 只有导出 pck 时才需要 GodotExe；纯 C# 构建可使用 /p:RunPckExport=false。 -->
     <GodotExe>PATH_TO_GODOT/Godot_v4.5.1-stable_mono_win64.exe</GodotExe>
+
+    <!-- 必填：你本机 RitsuLib 安装目录，里面要有 RitsuLib.References.props、compat/ 和 shared/。
+         两台机器路径不同，只填在这里，不要写进 Molin.csproj。常见位置：
+           - Steam 创意工坊：<Steam>/steamapps/workshop/content/2868840/<RitsuLib 物品 ID>
+           - 游戏 mods 目录：<Sts2Dir>/mods/STS2-RitsuLib
+         编译针对的游戏 API 版本由 Molin.csproj 的 RitsuLibReferenceTarget 决定（当前 0.111.0）。
+         注意：不要指向 RitsuLibDeployDir 那个默认目录，NuGet 自动部署会用主线构建覆盖它。 -->
+    <RitsuLibDir>PATH_TO_RITSULIB</RitsuLibDir>
 
     <!-- 可选：RitsuLib 本机部署目录，默认是 $(Sts2Dir)/mods/STS2-RitsuLib。 -->
     <!--<RitsuLibDeployDir>$(Sts2Dir)/mods/STS2-RitsuLib</RitsuLibDeployDir>-->

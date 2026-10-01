@@ -35,7 +35,12 @@
 
 1. 复制 `local.props.template` 为 `local.props`
 2. 填入 `Sts2Dir`（游戏根目录）和 `Sts2DataDir`（DLL 所在目录）
-3. 如需导出 PCK，填入 `GodotExe`
+3. 填入 `RitsuLibDir`（本机 RitsuLib 安装目录，需含 `RitsuLib.References.props`、`compat/`、`shared/`）
+4. 如需导出 PCK，填入 `GodotExe`
+
+RitsuLib 程序集引用由 `Molin.csproj` 里的 `RitsuLibReferenceTarget`（当前 `0.111.0`）加上各机器 `local.props` 的 `RitsuLibDir` 决定：`Molin.csproj` 里不写任何本机路径，两台机器各自指向本机的 RitsuLib 安装目录，安装目录自带的 `RitsuLib.References.props` 会被自动导入。
+
+两台机器必须使用**同一游戏 API 版本**的 `sts2.dll`（当前 `0.111.0`）和**同一份** RitsuLib（工坊变体包 `0.6.3`）。`MolinStrike` 的 `FromCard(卡牌, CardPlay)` 签名来自 `0.111.0` 的游戏程序集，版本不一致会让其中一台编不过。
 
 ### 命令
 

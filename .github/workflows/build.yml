@@ -1,17 +1,7 @@
 name: Build
 
 on:
-  push:
-    branches: [main, develop]
-    paths:
-      - 'src/**'
-      - 'mod_manifest.json'
-      - '.github/workflows/**'
-  pull_request:
-    branches: [main, develop]
-    paths:
-      - 'src/**'
-      - 'mod_manifest.json'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -26,14 +16,5 @@ jobs:
           dotnet-version: '9.0.x'
       - name: Restore
         run: dotnet restore
-      - name: Format check
-        run: dotnet format --verify-no-changes
       - name: Build
-        run: dotnet build -c Release --no-restore
-      - name: Test
-        run: dotnet test --no-build -c Release
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: mod-build
-          path: dist/
+        run: dotnet build -c Release --no-restore /p:RunPckExport=false

@@ -1,0 +1,21 @@
+{
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.aromaPrinciple": "[sine][blue]A clean template is ready for a new run.[/blue][/sine]",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.banter.alive.endTurnPing": "Turn complete.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.banter.dead.endTurnPing": "I am out for now.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.cardsModifierDescription": "Template Character cards can now appear in rewards and shops.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.cardsModifierTitle": "Template Cards",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.defeatMessage": "The template still needs a little tuning.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.description": "A sample character used to verify the RitsuLib template project.\nReplace this text with your own character concept after copying the template.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.eventDeathPrevention": "Template Character keeps going.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.flavor": "A clean template waiting to become a new adventure.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.goldMonologue": "This gold is enough to start testing.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.possessiveAdjective": "their",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.pronounObject": "them",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.pronounPossessive": "theirs",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.pronounSubject": "they",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.selectMessage": "Template Character is ready.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.title": "Template Character",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.titleObject": "Template Character",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.unlockText": "Complete a run as [pink]{Prerequisite}[/pink] to unlock this character.",
+  "STS2_MOD_CHARACTER_STS2_MOD_CHARACTER.victoryMessage": "Template verification complete."
+}

@@ -428,9 +428,6 @@ FodyWeavers.xsd
 *.msm
 *.msp
 # ===== Godot =====
-.godot/
-*.import
-export_presets.cfg
 .mono/
 *.translation
 
@@ -446,3 +443,11 @@ desktop.ini
 
 # ===== 临时文件 =====
 *.bak
+
+# ===== RitsuLib / Godot C# 模板 =====
+.idea/
+*.DotSettings
+*.DotSettings.user
+local.props
+*.uid
+*.tmp

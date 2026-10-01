@@ -1,28 +1,33 @@
 # 架构说明
 
-## 分层
-- Core：基础设施，无业务依赖
-- Adapters：外部知识库适配，唯一允许直接引用外部库的层
-- Cards / Relics / Powers / Events / UI：业务层，依赖 Core 和 Adapters
-- Utils：通用工具，无业务依赖
+## 项目结构
+- `Sts2Mod/` — Godot 资源目录，会被打包进 PCK
+  - `images/` — 图片
+  - `localization/` — 本地化 JSON
+  - `scenes/` — Godot 场景
+- `Sts2ModCode/` — C# 源码
+  - `Entry.cs` — Mod 入口，`[ModInitializer]`
+  - `Cards/` — 卡牌
+  - `Characters/` — 角色、卡池、遗物池、药水池
+  - `Relics/` — 遗物
+
+## 框架
+- 游戏 API：`MegaCrit.Sts2.*`
+- 模组框架：`STS2RitsuLib.*`
+- 补丁：`0Harmony`
+- 资源引擎：Godot 4.5.1
+
+## 内容注册
+- 卡牌：`[RegisterCard(typeof(卡池))]`
+- 遗物：`[RegisterRelic(typeof(遗物池))]`
+- 角色：`[RegisterCharacter]`
+- 初始卡/遗物：`[RegisterCharacterStarterCard]` / `[RegisterCharacterStarterRelic]`
+
+## 资源路径
+- 所有资源通过 `Entry.ResPath`（`res://Sts2Mod`）访问
+- 资源目录名 = `Sts2Mod.json` 的 `id`
 
 ## 依赖方向
-业务层 → Adapters → Core
-业务层 → Core
-禁止反向依赖
-禁止循环依赖
-
-## Adapter 层职责
-- 封装外部知识库调用
-- 提供统一接口 IKnowledgeBase
-- 业务代码只依赖接口，不依赖具体实现
-
-## 模块划分
-- src/Core/
-- src/Adapters/
-- src/Cards/
-- src/Relics/
-- src/Powers/
-- src/Events/
-- src/UI/
-- src/Utils/
+`Sts2ModCode/` 内部无强制分层，但推荐：
+- `Cards/`、`Relics/` 依赖 `Characters/`（卡池、遗物池）
+- 所有模块依赖 `Entry.cs`（ResPath、Logger）

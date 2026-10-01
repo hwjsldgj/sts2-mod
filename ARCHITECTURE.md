@@ -6,7 +6,7 @@
   - `localization/` — 本地化 JSON
   - `scenes/` — Godot 场景
 - `Sts2ModCode/` — C# 源码
-  - `Entry.cs` — Mod 入口，`[ModInitializer]`
+  - `Sts2ModCode/Entry.cs` — Mod 入口，`[ModInitializer]`
   - `Cards/` — 卡牌
   - `Characters/` — 角色、卡池、遗物池、药水池
   - `Relics/` — 遗物
@@ -30,4 +30,4 @@
 ## 依赖方向（推荐，非强制）
 `Sts2ModCode/` 内部无强制分层，但推荐：
 - `Cards/`、`Relics/` 依赖 `Characters/`（卡池、遗物池）
-- 所有模块依赖 `Entry.cs`（ResPath、Logger）
+- 所有模块依赖 `Sts2ModCode/Entry.cs`（ResPath、Logger）

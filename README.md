@@ -19,7 +19,7 @@
   - `Cards/` — 卡牌
   - `Characters/` — 角色、卡池、遗物池、药水池
   - `Relics/` — 遗物
-  - `Entry.cs` — 入口
+  - `Sts2ModCode/Entry.cs` — 入口
 
 ## 文档
 

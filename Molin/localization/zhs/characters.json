@@ -14,8 +14,8 @@
   "MOLIN_CHARACTER_MOLIN_CHARACTER.pronounPossessive": "他的",
   "MOLIN_CHARACTER_MOLIN_CHARACTER.pronounSubject": "他",
   "MOLIN_CHARACTER_MOLIN_CHARACTER.selectMessage": "模板角色准备就绪。",
-  "MOLIN_CHARACTER_MOLIN_CHARACTER.title": "模板角色",
-  "MOLIN_CHARACTER_MOLIN_CHARACTER.titleObject": "模板角色",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.title": "Molin",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.titleObject": "Molin",
   "MOLIN_CHARACTER_MOLIN_CHARACTER.unlockText": "用[pink]{Prerequisite}[/pink]进行一局游戏来解锁这个角色。",
   "MOLIN_CHARACTER_MOLIN_CHARACTER.victoryMessage": "模板验证完成。"
 }

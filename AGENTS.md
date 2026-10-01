@@ -248,6 +248,18 @@ git push -u origin <当前分支名>
 
 ---
 
+## API 使用规则
+
+- **不要凭记忆或猜测写 RitsuLib / 游戏 API 的枚举值、常量、方法签名。**
+- 不确定时，用以下方式核实：
+  1. 读现有代码里的同类用法
+  2. 读 NuGet 包里的 XML 文档：`%USERPROFILE%\.nuget\packages\sts2.ritsulib\0.6.3\lib\net9.0\*.xml`
+  3. 反射 `sts2.dll` 查枚举和类型
+  4. 问用户
+- 如果猜了，必须在输出里标注"未验证"，让用户核实后再提交。
+
+---
+
 ## 禁止行为
 
 - 不要发明 RitsuLib 没有的 API

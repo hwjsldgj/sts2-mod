@@ -15,7 +15,7 @@ namespace Molin.Cards;
 public sealed class MolinDefend : ModCardTemplate
 {
     // 基础耗能。
-    private const int BaseEnergyCost = 0;
+    private const int BaseEnergyCost = 1;
     // 卡牌类型。
     private const CardType CardKind = CardType.Skill;
     // 卡牌稀有度。

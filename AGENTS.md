@@ -69,12 +69,18 @@ public override CardAssetProfile AssetProfile => new(
     PortraitPath: $"{Entry.ResPath}/images/cards/{GetType().Name}.png");
 ```
 
-## 本地化 key
+## 本地化 key 命名
 
 - 卡牌：`MOLIN_CARD_<ID大写>.title` / `.description` / `.smartDescription`
 - 遗物：`MOLIN_RELIC_<ID大写>.title` / `.description` / `.flavor`
+- 角色：`MOLIN_CHARACTER_<ID大写>.<字段名>`，字段名见现有 `characters.json`
+- 远古对话：`<远古名>.talk.MOLIN_CHARACTER_<ID大写>.<序号>.<char|next|ancient>`
+  - 远古名例：`NEOW`、`DARV`
+  - 序号例：`0-0`、`0-1`
 
-中英文 JSON **必须同时改**，key 完全一致。
+中英文文件名相同，分别放在 `localization/eng/` 和 `localization/zhs/`。
+
+**本地化 key 由 RitsuLib 根据"模组ID + 内容类型 + 类名"自动生成**，所以会出现 `MOLIN_CARD_MOLIN_DEFEND` 这样的双重前缀（模组名 `Molin` + 类名 `MolinDefend`）。这是正常的，不要手动改短。
 
 ## 命名
 

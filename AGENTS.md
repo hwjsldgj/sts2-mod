@@ -16,7 +16,7 @@
 ## 开工前必做
 
 1. 运行 `git status --short --branch`，确认当前分支
-2. **如果当前在 `main`，先切分支**：
+2. **判断是否需要切分支**：仅可能破坏性改动、或与合伙人同时改同一区域时切分支；日常改动直接在 `main` 上做。
    ```
    git checkout -b feat/<简短描述>
    ```
@@ -167,7 +167,7 @@ dotnet build /p:RunPckExport=false
 ### 提交前必做
 
 1. 编译通过（见上）
-2. 确认不在 `main` 分支
+2. 若在分支上工作，确认分支名与改动内容相符
 3. 检查改动：
    ```
    git status
@@ -204,7 +204,7 @@ git commit -m "类型：描述"
 git push -u origin <当前分支名>
 ```
 
-**不要 push main。**
+分支工作用 `git push -u origin <当前分支名>`。
 
 ---
 
@@ -267,7 +267,7 @@ git push -u origin <当前分支名>
 - 不要动 `Molin.csproj`、`Molin.json`、`local.props`
 - 不要一次重构多个文件
 - 不要在没读参照文件时写新内容
-- 不要在 `main` 分支提交
+- 不要在不切分支的情况下做破坏性改动，或与合伙人同时改同一区域
 - 不要在编译不过时提交
 - 不要 `git push --force`
 - 不要删除别人写的内容

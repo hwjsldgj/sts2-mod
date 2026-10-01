@@ -1,20 +1,38 @@
-name: Build
+name: CI
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
-  build:
+  validate:
+    name: Restore & Validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-      - name: Restore
-        run: dotnet restore
-      - name: Build
-        run: dotnet build -c Release --no-restore /p:RunPckExport=false
+      - name: Restore NuGet
+        run: dotnet restore Sts2Mod.sln
+      - name: Validate JSON
+        run: |
+          set -e
+          while IFS= read -r f; do
+            case "$f" in
+              *.json) echo "checking $f"; python3 -m json.tool "$f" > /dev/null ;;
+            esac
+          done < <(git ls-files)
+      - name: Validate csproj XML
+        run: |
+          set -e
+          for f in Sts2Mod.csproj local.props.template; do
+            echo "checking $f"
+            python3 -c "import xml.etree.ElementTree as ET; ET.parse('$f')"
+          done
+      - name: Note
+        run: echo "本仓库无游戏 DLL，跳过编译。完整编译请在本地执行。"

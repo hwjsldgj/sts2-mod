@@ -27,7 +27,7 @@
 - 所有资源通过 `Entry.ResPath`（`res://Sts2Mod`）访问
 - 资源目录名 = `Sts2Mod.json` 的 `id`
 
-## 依赖方向
+## 依赖方向（推荐，非强制）
 `Sts2ModCode/` 内部无强制分层，但推荐：
 - `Cards/`、`Relics/` 依赖 `Characters/`（卡池、遗物池）
 - 所有模块依赖 `Entry.cs`（ResPath、Logger）

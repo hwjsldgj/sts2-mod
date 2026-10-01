@@ -51,3 +51,8 @@ dotnet build
 
 - [RitsuLib 仓库](https://github.com/BAKAOLC/STS2-RitsuLib)
 - [RitsuLib 文档](https://github.com/GlitchedReme/SlayTheSpire2ModdingTutorials/tree/master/RitsuLib)
+
+## 作者
+
+- [YGG-sudo](https://github.com/YGG-sudo)
+- [hwjsldgj](https://github.com/hwjsldgj)

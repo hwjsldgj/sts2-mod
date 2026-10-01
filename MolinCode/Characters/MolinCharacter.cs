@@ -10,7 +10,7 @@ namespace Molin.Characters;
 [RegisterCharacter]
 public sealed class MolinCharacter : ModCharacterTemplate<MolinCardPool, MolinRelicPool, MolinPotionPool>
 {
-    public static readonly Color ThemeColor = new(0.42f, 0.65f, 0.72f);
+    public static readonly Color ThemeColor = new(0.10f, 0.36f, 0.20f);
 
     private const string SceneRoot = $"{Entry.ResPath}/scenes/characters";
     private const string ImageRoot = $"{Entry.ResPath}/images/characters";
@@ -23,7 +23,7 @@ public sealed class MolinCharacter : ModCharacterTemplate<MolinCardPool, MolinRe
     // 角色名称颜色。
     public override Color NameColor => ThemeColor;
     // 能量图标轮廓颜色。
-    public override Color EnergyLabelOutlineColor => new(0.08f, 0.18f, 0.24f);
+    public override Color EnergyLabelOutlineColor => new(0.04f, 0.14f, 0.08f);
     // 地图绘制颜色。
     public override Color MapDrawingColor => ThemeColor;
 
@@ -31,7 +31,7 @@ public sealed class MolinCharacter : ModCharacterTemplate<MolinCardPool, MolinRe
     public override CharacterGender Gender => CharacterGender.Neutral;
 
     // 初始血量和金币。
-    public override int StartingHp => 75;
+    public override int StartingHp => 70;
     public override int StartingGold => 99;
 
     // CharacterAssetProfile 按类别拆分。你只写需要替换的部分，其他字段会保留回退。

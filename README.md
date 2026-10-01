@@ -11,15 +11,15 @@
 
 ## 目录结构
 
-- `Sts2Mod/` — 资源目录（图片、本地化、场景）
+- `Molin/` — 资源目录（图片、本地化、场景）
   - `images/` — 图片
   - `localization/` — 本地化文本
   - `scenes/` — Godot 场景
-- `Sts2ModCode/` — C# 代码
+- `MolinCode/` — C# 代码
   - `Cards/` — 卡牌
   - `Characters/` — 角色、卡池、遗物池、药水池
   - `Relics/` — 遗物
-  - `Sts2ModCode/Entry.cs` — 入口
+  - `MolinCode/Entry.cs` — 入口
 
 ## 文档
 

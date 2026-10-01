@@ -1,8 +1,0 @@
-{
-  "STS2_MOD_CARD_STS2_MOD_STRIKE.title": "Template Strike",
-  "STS2_MOD_CARD_STS2_MOD_STRIKE.description": "Deal {Damage:diff()} damage.",
-  "STS2_MOD_CARD_STS2_MOD_STRIKE.smartDescription": "Deal {Damage:diff()} damage.",
-  "STS2_MOD_CARD_STS2_MOD_DEFEND.title": "Template Defend",
-  "STS2_MOD_CARD_STS2_MOD_DEFEND.description": "Gain {Block:diff()} Block.",
-  "STS2_MOD_CARD_STS2_MOD_DEFEND.smartDescription": "Gain {Block:diff()} Block."
-}

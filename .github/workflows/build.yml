@@ -18,7 +18,7 @@ jobs:
         with:
           dotnet-version: '9.0.x'
       - name: Restore NuGet
-        run: dotnet restore Sts2Mod.sln
+        run: dotnet restore Molin.sln
       - name: Validate JSON
         run: |
           set -e
@@ -30,7 +30,7 @@ jobs:
       - name: Validate csproj XML
         run: |
           set -e
-          for f in Sts2Mod.csproj local.props.template; do
+          for f in Molin.csproj local.props.template; do
             echo "checking $f"
             python3 -c "import xml.etree.ElementTree as ET; ET.parse('$f')"
           done

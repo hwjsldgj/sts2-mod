@@ -23,8 +23,8 @@
 
 ## 资源路径
 
-- 用 `Entry.ResPath`（值为 `res://Sts2Mod`）拼接
-- 资源目录名 = `Sts2Mod.json` 的 `id`
+- 用 `Entry.ResPath`（值为 `res://Molin`）拼接
+- 资源目录名 = `Molin.json` 的 `id`
 
 示例：
 
@@ -55,7 +55,7 @@ public override CardAssetProfile AssetProfile => new(
 [ModInitializer(nameof(Initialize))]
 public partial class Entry
 {
-    public const string ModId = "Sts2Mod";
+    public const string ModId = "Molin";
     public const string ResPath = $"res://{ModId}";
     public static Logger Logger { get; } = new(ModId, LogType.Generic);
 

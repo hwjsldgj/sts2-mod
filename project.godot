@@ -10,12 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Sts2Mod"
+config/name="Molin"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 
 [dotnet]
 
-project/assembly_name="Sts2Mod"
+project/assembly_name="Molin"
 
 [rendering]
 

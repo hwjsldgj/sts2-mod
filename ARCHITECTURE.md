@@ -1,12 +1,12 @@
 # 架构说明
 
 ## 项目结构
-- `Sts2Mod/` — Godot 资源目录，会被打包进 PCK
+- `Molin/` — Godot 资源目录，会被打包进 PCK
   - `images/` — 图片
   - `localization/` — 本地化 JSON
   - `scenes/` — Godot 场景
-- `Sts2ModCode/` — C# 源码
-  - `Sts2ModCode/Entry.cs` — Mod 入口，`[ModInitializer]`
+- `MolinCode/` — C# 源码
+  - `MolinCode/Entry.cs` — Mod 入口，`[ModInitializer]`
   - `Cards/` — 卡牌
   - `Characters/` — 角色、卡池、遗物池、药水池
   - `Relics/` — 遗物
@@ -24,10 +24,10 @@
 - 初始卡/遗物：`[RegisterCharacterStarterCard]` / `[RegisterCharacterStarterRelic]`
 
 ## 资源路径
-- 所有资源通过 `Entry.ResPath`（`res://Sts2Mod`）访问
-- 资源目录名 = `Sts2Mod.json` 的 `id`
+- 所有资源通过 `Entry.ResPath`（`res://Molin`）访问
+- 资源目录名 = `Molin.json` 的 `id`
 
 ## 依赖方向（推荐，非强制）
-`Sts2ModCode/` 内部无强制分层，但推荐：
+`MolinCode/` 内部无强制分层，但推荐：
 - `Cards/`、`Relics/` 依赖 `Characters/`（卡池、遗物池）
-- 所有模块依赖 `Sts2ModCode/Entry.cs`（ResPath、Logger）
+- 所有模块依赖 `MolinCode/Entry.cs`（ResPath、Logger）

@@ -1,0 +1,8 @@
+{
+  "MOLIN_CARD_MOLIN_STRIKE.title": "模板打击",
+  "MOLIN_CARD_MOLIN_STRIKE.description": "造成 {Damage:diff()} 点伤害。",
+  "MOLIN_CARD_MOLIN_STRIKE.smartDescription": "造成 {Damage:diff()} 点伤害。",
+  "MOLIN_CARD_MOLIN_DEFEND.title": "模板防御",
+  "MOLIN_CARD_MOLIN_DEFEND.description": "获得 {Block:diff()} 点格挡。",
+  "MOLIN_CARD_MOLIN_DEFEND.smartDescription": "获得 {Block:diff()} 点格挡。"
+}

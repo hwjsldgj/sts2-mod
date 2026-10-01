@@ -1,0 +1,21 @@
+{
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.aromaPrinciple": "[sine][blue]A clean template is ready for a new run.[/blue][/sine]",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.banter.alive.endTurnPing": "Turn complete.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.banter.dead.endTurnPing": "I am out for now.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.cardsModifierDescription": "Template Character cards can now appear in rewards and shops.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.cardsModifierTitle": "Template Cards",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.defeatMessage": "The template still needs a little tuning.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.description": "A sample character used to verify the RitsuLib template project.\nReplace this text with your own character concept after copying the template.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.eventDeathPrevention": "Template Character keeps going.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.flavor": "A clean template waiting to become a new adventure.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.goldMonologue": "This gold is enough to start testing.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.possessiveAdjective": "their",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.pronounObject": "them",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.pronounPossessive": "theirs",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.pronounSubject": "they",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.selectMessage": "Template Character is ready.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.title": "Template Character",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.titleObject": "Template Character",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.unlockText": "Complete a run as [pink]{Prerequisite}[/pink] to unlock this character.",
+  "MOLIN_CHARACTER_MOLIN_CHARACTER.victoryMessage": "Template verification complete."
+}

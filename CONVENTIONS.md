@@ -17,11 +17,11 @@
 
 ## 目录职责
 
-- `Sts2ModCode/Entry.cs` — Mod 入口，全局常量和日志
-- `Sts2ModCode/Cards/` — 卡牌类
-- `Sts2ModCode/Characters/` — 角色、卡池、遗物池、药水池
-- `Sts2ModCode/Relics/` — 遗物类
-- `Sts2Mod/` — Godot 资源
+- `MolinCode/Entry.cs` — Mod 入口，全局常量和日志
+- `MolinCode/Cards/` — 卡牌类
+- `MolinCode/Characters/` — 角色、卡池、遗物池、药水池
+- `MolinCode/Relics/` — 遗物类
+- `Molin/` — Godot 资源
 
 ## 编码
 
@@ -39,5 +39,5 @@
 ## 禁止
 
 - 不使用 sed 全局替换标识符
-- 不修改 `Sts2Mod/` 下的原始资源文件
+- 不修改 `Molin/` 下的原始资源文件
 - 不一次性重构全项目

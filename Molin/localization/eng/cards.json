@@ -1,0 +1,8 @@
+{
+  "MOLIN_CARD_MOLIN_STRIKE.title": "Template Strike",
+  "MOLIN_CARD_MOLIN_STRIKE.description": "Deal {Damage:diff()} damage.",
+  "MOLIN_CARD_MOLIN_STRIKE.smartDescription": "Deal {Damage:diff()} damage.",
+  "MOLIN_CARD_MOLIN_DEFEND.title": "Template Defend",
+  "MOLIN_CARD_MOLIN_DEFEND.description": "Gain {Block:diff()} Block.",
+  "MOLIN_CARD_MOLIN_DEFEND.smartDescription": "Gain {Block:diff()} Block."
+}

@@ -21,9 +21,9 @@
    git checkout -b feat/<简短描述>
    ```
 3. 阅读参照文件（至少读一个同类）：
-   - 卡牌：`Sts2ModCode/Cards/Sts2ModStrike.cs`
-   - 遗物：`Sts2ModCode/Relics/Sts2ModRelic.cs`
-   - 角色：`Sts2ModCode/Characters/Sts2ModCharacter.cs`
+   - 卡牌：`MolinCode/Cards/MolinStrike.cs`
+   - 遗物：`MolinCode/Relics/MolinRelic.cs`
+   - 角色：`MolinCode/Characters/MolinCharacter.cs`
 
 **不要凭记忆写 RitsuLib API。不确定时先读现有文件或问用户。**
 
@@ -31,13 +31,13 @@
 
 | 内容 | 路径 |
 |---|---|
-| 卡牌 | `Sts2ModCode/Cards/<类名>.cs` |
-| 遗物 | `Sts2ModCode/Relics/<类名>.cs` |
-| 角色/卡池/遗物池/药水池 | `Sts2ModCode/Characters/<类名>.cs` |
-| 卡牌图片 | `Sts2Mod/images/cards/<类名>.png` |
-| 遗物图片 | `Sts2Mod/images/relics/<类名>.png` |
-| 中文文本 | `Sts2Mod/localization/zhs/*.json` |
-| 英文文本 | `Sts2Mod/localization/eng/*.json` |
+| 卡牌 | `MolinCode/Cards/<类名>.cs` |
+| 遗物 | `MolinCode/Relics/<类名>.cs` |
+| 角色/卡池/遗物池/药水池 | `MolinCode/Characters/<类名>.cs` |
+| 卡牌图片 | `Molin/images/cards/<类名>.png` |
+| 遗物图片 | `Molin/images/relics/<类名>.png` |
+| 中文文本 | `Molin/localization/zhs/*.json` |
+| 英文文本 | `Molin/localization/eng/*.json` |
 
 ## 基类
 
@@ -45,7 +45,7 @@
 |---|---|
 | 卡牌 | `ModCardTemplate` |
 | 遗物 | `ModRelicTemplate` |
-| 角色 | `ModCharacterTemplate<Sts2ModCardPool, Sts2ModRelicPool, Sts2ModPotionPool>` |
+| 角色 | `ModCharacterTemplate<MolinCardPool, MolinRelicPool, MolinPotionPool>` |
 | 卡池 | `TypeListCardPoolModel` |
 | 遗物池 | `TypeListRelicPoolModel` |
 | 药水池 | `TypeListPotionPoolModel` |
@@ -53,16 +53,16 @@
 ## 必须加的标签
 
 ```csharp
-[RegisterCard(typeof(Sts2ModCardPool))]
-[RegisterRelic(typeof(Sts2ModRelicPool))]
+[RegisterCard(typeof(MolinCardPool))]
+[RegisterRelic(typeof(MolinRelicPool))]
 [RegisterCharacter]
-[RegisterCharacterStarterCard(typeof(Sts2ModCharacter), 数量)]
-[RegisterCharacterStarterRelic(typeof(Sts2ModCharacter))]
+[RegisterCharacterStarterCard(typeof(MolinCharacter), 数量)]
+[RegisterCharacterStarterRelic(typeof(MolinCharacter))]
 ```
 
 ## 资源路径
 
-固定用 `Entry.ResPath` 拼接（值为 `res://Sts2Mod`）。
+固定用 `Entry.ResPath` 拼接（值为 `res://Molin`）。
 
 ```csharp
 public override CardAssetProfile AssetProfile => new(
@@ -71,8 +71,8 @@ public override CardAssetProfile AssetProfile => new(
 
 ## 本地化 key
 
-- 卡牌：`STS2_MOD_CARD_<ID大写>.title` / `.description` / `.smartDescription`
-- 遗物：`STS2_MOD_RELIC_<ID大写>.title` / `.description` / `.flavor`
+- 卡牌：`MOLIN_CARD_<ID大写>.title` / `.description` / `.smartDescription`
+- 遗物：`MOLIN_RELIC_<ID大写>.title` / `.description` / `.flavor`
 
 中英文 JSON **必须同时改**，key 完全一致。
 
@@ -90,19 +90,19 @@ public override CardAssetProfile AssetProfile => new(
 
 写一张新卡牌，必须完成：
 
-1. 创建 `Sts2ModCode/Cards/<类名>.cs`
-2. 追加 `Sts2Mod/localization/zhs/cards.json` 条目
-3. 追加 `Sts2Mod/localization/eng/cards.json` 条目
+1. 创建 `MolinCode/Cards/<类名>.cs`
+2. 追加 `Molin/localization/zhs/cards.json` 条目
+3. 追加 `Molin/localization/eng/cards.json` 条目
 4. 更新 `docs/features.md` 的"卡牌"段，追加一行
-5. 报告用户需要准备 `Sts2Mod/images/cards/<类名>.png`（你不能生成图片）
+5. 报告用户需要准备 `Molin/images/cards/<类名>.png`（你不能生成图片）
 
 写一个新遗物，必须完成：
 
-1. 创建 `Sts2ModCode/Relics/<类名>.cs`
-2. 追加 `Sts2Mod/localization/zhs/relics.json` 条目
-3. 追加 `Sts2Mod/localization/eng/relics.json` 条目
+1. 创建 `MolinCode/Relics/<类名>.cs`
+2. 追加 `Molin/localization/zhs/relics.json` 条目
+3. 追加 `Molin/localization/eng/relics.json` 条目
 4. 更新 `docs/features.md` 的"遗物"段，追加一行
-5. 报告用户需要准备 `Sts2Mod/images/relics/<类名>.png`
+5. 报告用户需要准备 `Molin/images/relics/<类名>.png`
 
 **缺任何一项，不算完成。**
 
@@ -245,8 +245,8 @@ git push -u origin <当前分支名>
 ## 禁止行为
 
 - 不要发明 RitsuLib 没有的 API
-- 不要改 `Sts2Mod/` 下的图片、场景原始文件
-- 不要动 `Sts2Mod.csproj`、`Sts2Mod.json`、`local.props`
+- 不要改 `Molin/` 下的图片、场景原始文件
+- 不要动 `Molin.csproj`、`Molin.json`、`local.props`
 - 不要一次重构多个文件
 - 不要在没读参照文件时写新内容
 - 不要在 `main` 分支提交

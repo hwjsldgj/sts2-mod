@@ -68,6 +68,17 @@ public partial class Entry
 }
 ```
 
+## 攻击指令（v0.111.0）
+
+`AttackCommand.FromCard` 需要同时传卡牌和 `CardPlay`，只传 `this` 会在运行时抛 `MissingMethodException`。
+
+```csharp
+await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+    .FromCard(this, cardPlay)
+    .Targeting(cardPlay.Target)
+    .Execute(choiceContext);
+```
+
 ## 参考
 
 - RitsuLib 仓库：https://github.com/BAKAOLC/STS2-RitsuLib

@@ -78,12 +78,12 @@
     </ItemGroup>
 
     <Target Name="ValidateSts2GameInstall" BeforeTargets="ResolveAssemblyReferences">
-        <Error Condition="!Exists('$(Sts2DataDir)\sts2.dll')" Text="Could not find sts2.dll under '$(Sts2DataDir)'. Copy local.props.template to local.props and set Sts2Dir/Sts2DataDir for your local game install." />
+        <Error Condition="!Exists('$(Sts2DataDir)\sts2.dll')" Text="在 '$(Sts2DataDir)' 下找不到 sts2.dll。请把 local.props.template 复制为 local.props，并把 Sts2Dir/Sts2DataDir 设为你本机的游戏目录。" />
     </Target>
 
     <Target Name="ValidateRitsuLibReferences" BeforeTargets="ResolveAssemblyReferences">
-        <Error Condition="'$(RitsuLibDir)' == ''" Text="RitsuLibDir is not set. Set RitsuLibDir in local.props to your local RitsuLib installation folder (the one containing RitsuLib.References.props, compat/ and shared/), or pass /p:RitsuLibDir=&lt;path&gt;." />
-        <Error Condition="!Exists('$(RitsuLibDir)\RitsuLib.References.props')" Text="Could not find RitsuLib.References.props under '$(RitsuLibDir)'. Point RitsuLibDir at a complete RitsuLib installation folder." />
+        <Error Condition="'$(RitsuLibDir)' == ''" Text="未设置 RitsuLibDir。请在 local.props 里把 RitsuLibDir 设为你本机的 RitsuLib 安装目录（里面要有 RitsuLib.References.props、compat/ 和 shared/），或传 /p:RitsuLibDir=&lt;路径&gt;。" />
+        <Error Condition="!Exists('$(RitsuLibDir)\RitsuLib.References.props')" Text="在 '$(RitsuLibDir)' 下找不到 RitsuLib.References.props。请把 RitsuLibDir 指向完整的 RitsuLib 安装目录。" />
     </Target>
 
     <Target Name="CopyMod" AfterTargets="Build" Condition="'$(CopyModOnBuild)' != 'false'">
@@ -93,7 +93,7 @@
     </Target>
 
     <Target Name="ExportPCK" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1'">
-        <Error Condition="'$(GodotExe)' == '' or !Exists('$(GodotExe)')" Text="GodotExe is required for PCK export. Copy local.props.template to local.props and set GodotExe, or build with /p:RunPckExport=false." />
+        <Error Condition="'$(GodotExe)' == '' or !Exists('$(GodotExe)')" Text="导出 PCK 需要 GodotExe。请把 local.props.template 复制为 local.props 并填好 GodotExe，或用 /p:RunPckExport=false 构建。" />
         <MakeDir Directories="$(ModOutputDir)" />
         <Exec WorkingDirectory="$(MSBuildProjectDirectory)" Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1" />
     </Target>
@@ -112,9 +112,9 @@
             <_ManifestNeedsUpdate>false</_ManifestNeedsUpdate>
             <_ManifestNeedsUpdate Condition="'$(_CurrentRitsuLibVersion)' != '' and '$(_CurrentRitsuLibVersion)' != '$(RitsuLibVersion)'">true</_ManifestNeedsUpdate>
         </PropertyGroup>
-        <Error Condition="'$(_HasRitsuLibVersion)' != 'True'" Text="Could not find dependencies[STS2-RitsuLib].version in '$(ManifestFile)'." />
-        <Message Importance="High" Condition="'$(_ManifestNeedsUpdate)' == 'true'" Text="Sync STS2-RitsuLib manifest dependency: $(_CurrentRitsuLibVersion) -&gt; $(RitsuLibVersion)" />
-        <Message Importance="Low" Condition="'$(_ManifestNeedsUpdate)' != 'true'" Text="STS2-RitsuLib manifest dependency already matches $(RitsuLibVersion)." />
+        <Error Condition="'$(_HasRitsuLibVersion)' != 'True'" Text="在 '$(ManifestFile)' 里找不到 dependencies[STS2-RitsuLib].version。" />
+        <Message Importance="High" Condition="'$(_ManifestNeedsUpdate)' == 'true'" Text="同步 STS2-RitsuLib 清单依赖：$(_CurrentRitsuLibVersion) -&gt; $(RitsuLibVersion)" />
+        <Message Importance="Low" Condition="'$(_ManifestNeedsUpdate)' != 'true'" Text="STS2-RitsuLib 清单依赖已与 $(RitsuLibVersion) 一致。" />
         <PropertyGroup Condition="'$(_ManifestNeedsUpdate)' == 'true'">
             <_Pattern>(?s)("STS2-RitsuLib".*?"version"\s*:\s*")[^"]+(")</_Pattern>
             <_Replacement>${1}$(RitsuLibVersion)${2}</_Replacement>

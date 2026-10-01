@@ -11,7 +11,7 @@ namespace Molin.Cards;
 
 // 防御牌和打击一样注册到角色卡池，并作为 4 张初始卡加入角色卡组。
 [RegisterCard(typeof(MolinCardPool))]
-[RegisterCharacterStarterCard(typeof(MolinCharacter), 4)]
+[RegisterCharacterStarterCard(typeof(MolinCharacter), 5)]
 public sealed class MolinDefend : ModCardTemplate
 {
     // 基础耗能。

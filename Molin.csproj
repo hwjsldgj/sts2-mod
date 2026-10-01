@@ -20,15 +20,22 @@
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
         <!-- 本机测试时 RitsuLib 包/构建逻辑会使用这个目录把 RitsuLib 部署到游戏 mods/STS2-RitsuLib 。 -->
         <RitsuLibDeployDir Condition="'$(RitsuLibDeployDir)' == ''">$(Sts2Dir)\mods\STS2-RitsuLib</RitsuLibDeployDir>
+        <!-- 编译所针对的游戏 API 版本，对应 $(RitsuLibDir)\compat\<版本>。两台机器一致，不需要放进 local.props。 -->
+        <RitsuLibReferenceTarget Condition="'$(RitsuLibReferenceTarget)' == ''">0.111.0</RitsuLibReferenceTarget>
         <CopyModOnBuild Condition="'$(CopyModOnBuild)' == ''">true</CopyModOnBuild>
         <RunPckExport Condition="'$(RunPckExport)' == '' and '$(DesignTimeBuild)' != 'true'">true</RunPckExport>
         <RunPckExport Condition="'$(RunPckExport)' == ''">false</RunPckExport>
     </PropertyGroup>
 
+    <!-- RitsuLib 目录引用：用本机安装目录（local.props 的 RitsuLibDir）自带的 RitsuLib.References.props
+         一次性引入 STS2-RitsuLib / Runtime / Shared / Ui / Settings 五个程序集，仓库内不写死任何本机路径。 -->
+    <Import Project="$(RitsuLibDir)\RitsuLib.References.props" Condition="'$(RitsuLibDir)' != '' and Exists('$(RitsuLibDir)\RitsuLib.References.props')" />
+
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.2.1" PrivateAssets="all" />
-        <!-- 主线 RitsuLib（STS2 0.105.0+），跟踪 NuGet 最新版本。兼容分支和 manifest 版本对齐规则见 README。 -->
-        <PackageReference Include="STS2.RitsuLib" Version="0.6.3" GeneratePathProperty="true" />
+        <!-- 主线 RitsuLib（STS2 0.105.0+）：只用于本机部署与 manifest 版本同步。
+             编译引用交给 RitsuLibDir 指向的本机 RitsuLib 安装目录（见下方 Import），避免两份同版本程序集互相遮蔽。 -->
+        <PackageReference Include="STS2.RitsuLib" Version="0.6.3" GeneratePathProperty="true" ExcludeAssets="compile" />
     </ItemGroup>
 
     <ItemGroup>
@@ -37,17 +44,8 @@
 
     <ItemGroup>
         <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True" />
-        <Reference Include="GodotSharp">
-          <HintPath>..\..\SteamLibrary\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64\GodotSharp.dll</HintPath>
-        </Reference>
         <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True" />
         <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True" />
-        <Reference Include="STS2-RitsuLib.Loader">
-          <HintPath>..\..\SteamLibrary\steamapps\workshop\content\2868840\3747602295\compat\0.111.0\STS2-RitsuLib.dll</HintPath>
-        </Reference>
-        <Reference Include="STS2-RitsuLib.Loader">
-          <HintPath>..\..\SteamLibrary\steamapps\workshop\content\2868840\3747602295\compat\0.111.0\STS2-RitsuLib.dll</HintPath>
-        </Reference>
     </ItemGroup>
 
     <ItemGroup>
@@ -81,6 +79,11 @@
 
     <Target Name="ValidateSts2GameInstall" BeforeTargets="ResolveAssemblyReferences">
         <Error Condition="!Exists('$(Sts2DataDir)\sts2.dll')" Text="Could not find sts2.dll under '$(Sts2DataDir)'. Copy local.props.template to local.props and set Sts2Dir/Sts2DataDir for your local game install." />
+    </Target>
+
+    <Target Name="ValidateRitsuLibReferences" BeforeTargets="ResolveAssemblyReferences">
+        <Error Condition="'$(RitsuLibDir)' == ''" Text="RitsuLibDir is not set. Set RitsuLibDir in local.props to your local RitsuLib installation folder (the one containing RitsuLib.References.props, compat/ and shared/), or pass /p:RitsuLibDir=&lt;path&gt;." />
+        <Error Condition="!Exists('$(RitsuLibDir)\RitsuLib.References.props')" Text="Could not find RitsuLib.References.props under '$(RitsuLibDir)'. Point RitsuLibDir at a complete RitsuLib installation folder." />
     </Target>
 
     <Target Name="CopyMod" AfterTargets="Build" Condition="'$(CopyModOnBuild)' != 'false'">

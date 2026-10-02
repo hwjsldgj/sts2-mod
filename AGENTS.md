@@ -15,6 +15,7 @@
 ## 语言
 
 - 全过程用中文：对话、文档、注释、提交信息、构建报错与提示文案。
+- 分支名、PR 标题与正文也用中文（例：`docs/分支与PR文本用中文`），不要用英文分支名。
 - 只有标识符、API 名、文件路径、第三方原文保留英文。
 - 中文在 IDE 里显示正常；终端乱码不是改用英文的理由。
 
@@ -33,10 +34,10 @@
    - 有风险的改动（构建与工程文件、`Molin.json`、依赖、重构、跨模块、影响编译或发布）：必须开分支、推送、走 PR 合并，不允许直接改 `main`。
    - 低风险改动（文档、单张卡牌、单个遗物）：可直接在 `main` 上做。
    ```
-   git checkout -b feat/<简短描述>
-   git checkout -b fix/<简短描述>
+   git checkout -b feat/<中文简短描述>
+   git checkout -b fix/<中文简短描述>
    ```
-   PR 标题同样用 `类型：描述` 中文格式。
+   PR 标题同样用 `类型：描述` 中文格式，正文也写中文。
 3. 阅读参照文件（至少读一个同类）：
    - 卡牌：`MolinCode/Cards/MolinStrike.cs`
    - 遗物：`MolinCode/Relics/MolinRelic.cs`
@@ -228,7 +229,7 @@ git commit -m "类型：描述"
 git push -u origin <当前分支名>
 ```
 
-分支工作用 `git push -u origin <当前分支名>`，然后在 GitHub 开 PR（标题用中文 `类型：描述`）再合并。
+分支工作用 `git push -u origin <当前分支名>`，然后在 GitHub 开 PR（标题用中文 `类型：描述`、正文也用中文）再合并。分支名如果是英文，GitHub 会用分支名当默认标题，所以分支名要写中文。
 
 本机有推送权限，正常 `git push` 即可；**不要用 `--force` 或 `--force-with-lease`**。
 

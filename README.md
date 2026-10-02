@@ -18,6 +18,7 @@
 - `MolinCode/` — C# 代码
   - `Cards/` — 卡牌
   - `Characters/` — 角色、卡池、遗物池、药水池
+  - `Powers/` — 能力
   - `Relics/` — 遗物
 - `MolinCode/Entry.cs` — 入口（Mod 初始化、`ResPath`、`Logger`）
 

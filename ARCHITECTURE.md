@@ -9,6 +9,7 @@
   - `Entry.cs` — Mod 入口，`[ModInitializer]`
   - `Cards/` — 卡牌
   - `Characters/` — 角色、卡池、遗物池、药水池
+  - `Powers/` — 能力
   - `Relics/` — 遗物
 
 ## 框架
@@ -20,6 +21,7 @@
 ## 内容注册
 - 卡牌：`[RegisterCard(typeof(卡池))]`
 - 遗物：`[RegisterRelic(typeof(遗物池))]`
+- 能力：`[RegisterPower]`（无参数，能力没有卡池）
 - 角色：`[RegisterCharacter]`
 - 初始卡/遗物：`[RegisterCharacterStarterCard]` / `[RegisterCharacterStarterRelic]`
 

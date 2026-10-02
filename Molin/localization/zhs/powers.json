@@ -1,0 +1,4 @@
+{
+  "MOLIN_POWER_MOLIN_COIN.title": "硬币",
+  "MOLIN_POWER_MOLIN_COIN.description": "回合开始时层数 -1。敌人回合结束时，若层数为 [blue]1[/blue]，对所有敌人造成此能力存在期间你打出的攻击牌造成的伤害总和。"
+}

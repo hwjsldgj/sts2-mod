@@ -4,9 +4,9 @@
 - `Molin/` — Godot 资源目录，会被打包进 PCK
   - `images/` — 图片
   - `localization/` — 本地化 JSON
-  - `scenes/` — Godot 场景
+  - `scenes/` — Godot 场景（角色立绘、能量表、商店与篝火等）
 - `MolinCode/` — C# 源码
-  - `MolinCode/Entry.cs` — Mod 入口，`[ModInitializer]`
+  - `Entry.cs` — Mod 入口，`[ModInitializer]`
   - `Cards/` — 卡牌
   - `Characters/` — 角色、卡池、遗物池、药水池
   - `Relics/` — 遗物

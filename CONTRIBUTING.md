@@ -17,15 +17,14 @@
 - feat/xxx：功能分支
 - fix/xxx：修复分支
 
-**开发流程（推荐）：**
+**开发流程：**
 
 1. 从 main 开分支：`git checkout -b feat/xxx`
 2. 写代码、提交
-3. 切回 main 合并：`git checkout main && git merge feat/xxx --no-ff`
-4. 推送：`git push origin main`
-5. 删除分支：`git branch -d feat/xxx`
+3. 推送分支：`git push -u origin feat/xxx`
+4. 在 GitHub 开 PR（标题用中文 `类型：描述`），合并后删除分支：`git branch -d feat/xxx`
 
-不走 PR，不需要审批。管理员可直接 push 到 main。
+**有风险的改动**（构建与工程文件、`Molin.json`、依赖、重构、跨模块、影响编译或发布）必须开分支 + 走 PR，不允许直接推 `main`；低风险改动（文档、单张卡牌、单个遗物）可直接在 `main` 上做，推前先 `git pull`。任何情况都不要强制推送。
 
 ## 提交信息
 
@@ -34,6 +33,7 @@
 - 重构：重构代码
 - 文档：文档变更
 - 杂项：构建、配置、杂务
+- 合并：合并分支
 - 流水线：CI 配置
 - 测试：测试相关
 - 格式：格式调整

@@ -5,12 +5,12 @@
 [node name="MolinCharacterRestSite" type="Node2D"]
 
 [node name="Visuals" type="Sprite2D" parent="."]
-position = Vector2(0, -96)
+position = Vector2(0, -162)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("1_character")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(75, -58)
+position = Vector2(75, -98)
 scale = Vector2(0.75, 0.75)
 modulate = Color(0.25, 0.25, 0.25, 0.45)
 texture = ExtResource("1_character")

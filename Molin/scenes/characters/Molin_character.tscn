@@ -6,7 +6,7 @@
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -92)
+position = Vector2(0, -158)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("1_character")
 
@@ -15,18 +15,18 @@ unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = -82.0
-offset_top = -214.0
+offset_top = -346.0
 offset_right = 82.0
 offset_bottom = 14.0
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(24, -224)
+position = Vector2(24, -356)
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -96)
+position = Vector2(0, -162)
 
 [node name="TalkPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -184)
+position = Vector2(0, -316)

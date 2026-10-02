@@ -5,6 +5,6 @@
 [node name="MolinCharacterMerchant" type="Node2D"]
 
 [node name="Visuals" type="Sprite2D" parent="."]
-position = Vector2(0, -96)
+position = Vector2(0, -162)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("1_character")

@@ -6,6 +6,7 @@
 |---|---|
 | 卡牌 | `ModCardTemplate` |
 | 遗物 | `ModRelicTemplate` |
+| 能力 | `ModPowerTemplate` |
 | 角色 | `ModCharacterTemplate<卡池, 遗物池, 药水池>` |
 | 卡池 | `TypeListCardPoolModel` |
 | 遗物池 | `TypeListRelicPoolModel` |
@@ -17,6 +18,7 @@
 |---|---|
 | 卡牌 | `[RegisterCard(typeof(卡池))]` |
 | 遗物 | `[RegisterRelic(typeof(遗物池))]` |
+| 能力 | `[RegisterPower]`（无参数，能力没有卡池） |
 | 角色 | `[RegisterCharacter]` |
 | 初始卡 | `[RegisterCharacterStarterCard(typeof(角色), 数量)]` |
 | 初始遗物 | `[RegisterCharacterStarterRelic(typeof(角色))]` |
@@ -114,6 +116,59 @@ public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext
 `Creature.CurrentHp` / `Creature.MaxHp` 可读当前值与上限。
 
 格挡同理：`CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay)` 需要带上 `cardPlay`。
+
+## 能力（v0.111.0）
+
+基类 `ModPowerTemplate`，标签 `[RegisterPower]`（无参数）。
+
+`PowerModel` 有两个抽象属性必须实现，另有内部数据机制：
+
+| 成员 | 说明 |
+|---|---|
+| `public override PowerType Type` | `Buff` / `Debuff` / `None` |
+| `public override PowerStackType StackType` | `Counter`（显示层数）/ `Single` / `None` |
+| `protected override object InitInternalData()` | 返回私有数据对象，克隆时重置 |
+| `protected T GetInternalData<T>()` | 取回上面的对象 |
+| `public override PowerAssetProfile AssetProfile` | `new(IconPath, BigIconPath)` |
+
+`PowerType`、`PowerStackType` 在 `MegaCrit.Sts2.Core.Entities.Powers`；
+`PowerInstanceType` 同理（`None` / `Instanced` / `InstancedPerApplier`）。
+
+常用钩子（都来自 `AbstractModel`，签名与遗物一致）：
+
+```csharp
+// 任何生物攻击后都会触发，需自行过滤所有者与牌型
+public override Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
+// AttackCommand.CardPlay 为 CardPlay（Card / Player / Target），Results 为 IEnumerable<List<DamageResult>>
+// 需要 await 的钩子写成 async Task，不需要的可以直接返回 Task.CompletedTask
+
+// 某一方回合结束；CombatSide 取值为 None / Player / Enemy
+public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+
+// 回合开始（每个玩家各触发一次）
+public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+```
+
+层数与指令：
+
+| 方法 | 说明 |
+|---|---|
+| `PowerModel.Amount` | 当前层数（`int`） |
+| `PowerCmd.Decrement(PowerModel)` | 层数 -1，降到 0 时移除 |
+| `PowerModel.Owner` | 能力所在生物（`Creature`） |
+| `PowerModel.CombatState` | 当前战斗（`ICombatState`），`HittableEnemies` 是可打的敌人 |
+
+直接造成伤害用 `CreatureCmd.Damage`，不需要构造攻击指令：
+
+```csharp
+await CreatureCmd.Damage(choiceContext, CombatState.HittableEnemies, damage, ValueProp.Unpowered, Owner);
+```
+
+`ValueProp` 的含义见 `sts2.xml`：`Unblockable` = 类似中毒的生命流失，`Unpowered` = 遗物 / 药水 / 能力造成的伤害，
+`Move` = 攻击牌与敌人攻击的伤害。
+
+能力本地化 key 是 `MOLIN_POWER_<类名大写>`，写在 `powers` 表（`Molin/localization/<语言>/powers.json`），
+常用字段 `{ENTRY}.title` / `{ENTRY}.description`。
 
 ## 参考
 

@@ -32,6 +32,12 @@
 | `Molin/images/characters/energy_big.png` | 大能量图标 |
 | `Molin/images/characters/energy_text.png` | 文本能量图标 |
 
+### 能力
+
+| 文件 | 用途 |
+|---|---|
+| `Molin/images/powers/MolinCoin.png` | 硬币图标（待提供） |
+
 ## 音频
 
 （暂无）
@@ -43,10 +49,12 @@
 | `Molin/localization/eng/ancients.json` | 英文：远古对话 |
 | `Molin/localization/eng/cards.json` | 英文：卡牌文本 |
 | `Molin/localization/eng/characters.json` | 英文：角色文本 |
+| `Molin/localization/eng/powers.json` | 英文：能力文本 |
 | `Molin/localization/eng/relics.json` | 英文：遗物文本 |
 | `Molin/localization/zhs/ancients.json` | 中文：远古对话 |
 | `Molin/localization/zhs/cards.json` | 中文：卡牌文本 |
 | `Molin/localization/zhs/characters.json` | 中文：角色文本 |
+| `Molin/localization/zhs/powers.json` | 中文：能力文本 |
 | `Molin/localization/zhs/relics.json` | 中文：遗物文本 |
 
 ## 场景

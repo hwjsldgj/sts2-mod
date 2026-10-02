@@ -36,7 +36,7 @@
 
 | 文件 | 用途 |
 |---|---|
-| `Molin/images/powers/MolinCoin.png` | 硬币图标（待提供） |
+| `Molin/images/powers/MolinCoin.png` | 硬币图标 |
 
 ## 音频
 

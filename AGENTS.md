@@ -18,6 +18,14 @@
 - 只有标识符、API 名、文件路径、第三方原文保留英文。
 - 中文在 IDE 里显示正常；终端乱码不是改用英文的理由。
 
+## 终端
+
+- 跑命令一律用 `powershell.exe` 或 `cmd.exe`，**不要用 `pwsh`**。
+- 需要非交互执行时写成 `powershell -NoProfile -Command "<命令>"`。
+- 会话 PATH 可能缺 `git` 等命令：先用 `Get-Command` / `Test-Path` 定位，再在当次命令里临时补 PATH。
+- **不要把本机路径写进仓库里的任何文件**（`local.props` 已被忽略，是唯一例外）。
+- 命令跑不起来时换 shell 或补 PATH 重试，不要改用英文提示，也不要改提示词。
+
 ## 开工前必做
 
 1. 运行 `git status --short --branch`，确认当前分支

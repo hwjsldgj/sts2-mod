@@ -453,3 +453,6 @@ desktop.ini
 local.props
 *.uid
 *.tmp
+
+# ===== 其他 =====
+*.pck

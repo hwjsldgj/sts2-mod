@@ -75,7 +75,7 @@ public partial class Entry
 
 ## 攻击指令（游戏 API 0.111.0）
 
-`FromCard(卡牌, CardPlay)` 是 0.111.0 的游戏程序集 `sts2.dll` 才有的重载；引用旧版 `sts2.dll` 时只传 `this` 会编译报 `CS1501`，运行时则抛 `MissingMethodException`。
+`FromCard(卡牌, CardPlay)` 是 0.111.0 的游戏程序集 `sts2.dll` 才有的重载；编译期引用旧版 `sts2.dll` 时只传 `this` 会报 `CS1501`，编译期引用新版而运行期加载旧版时会抛 `MissingMethodException`。
 
 ```csharp
 await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
@@ -84,7 +84,7 @@ await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
     .Execute(choiceContext);
 ```
 
-## 遗物钩子（v0.111.0）
+## 遗物钩子（游戏 API 0.111.0）
 
 遗物效果钩子来自游戏基类 `MegaCrit.Sts2.Core.Models.AbstractModel`，不是 RitsuLib。
 遗物自身通过 `RelicModel.Owner`（`Player`）取所属玩家，再用 `Owner.Creature` 取生物。
@@ -97,10 +97,10 @@ public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creatur
 public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
 ```
 
-- `Creature.IsPrimaryEnemy` / `Creature.IsSecondaryEnemy` 判断敌人
+- `Creature.IsPrimaryEnemy` / `Creature.IsSecondaryEnemy` 判断敌人（语义未在游戏内验证，改动前先在游戏里确认）
 - `DamageResult.UnblockedDamage` 为未格挡伤害，`BlockedDamage` / `TotalDamage` 同理
 
-## 生命值指令（v0.111.0）
+## 生命值指令（游戏 API 0.111.0）
 
 | 方法 | 说明 |
 |---|---|

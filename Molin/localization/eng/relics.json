@@ -1,5 +1,5 @@
 {
   "MOLIN_RELIC_MOLIN_RELIC.title": "Template Relic",
-  "MOLIN_RELIC_MOLIN_RELIC.description": "Whenever an enemy dies, gain [blue]6[/blue] Max HP and heal [blue]6[/blue] HP. When you take unblocked damage, lose Max HP equal to half that damage, rounded down, to a minimum of [blue]1[/blue].",
+  "MOLIN_RELIC_MOLIN_RELIC.description": "Whenever an enemy dies, gain [blue]6[/blue] Max HP and heal [blue]6[/blue] HP. When you take unblocked damage, lose Max HP equal to half that damage, rounded down, and lose the same amount of current HP, to a minimum of [blue]1[/blue].",
   "MOLIN_RELIC_MOLIN_RELIC.flavor": "A sample relic used to verify the template project."
 }

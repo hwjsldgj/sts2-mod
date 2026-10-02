@@ -79,6 +79,35 @@ await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
     .Execute(choiceContext);
 ```
 
+## 遗物钩子（v0.111.0）
+
+遗物效果钩子来自游戏基类 `MegaCrit.Sts2.Core.Models.AbstractModel`，不是 RitsuLib。
+遗物自身通过 `RelicModel.Owner`（`Player`）取所属玩家，再用 `Owner.Creature` 取生物。
+
+```csharp
+// 任何生物死亡后触发，含玩家自己，需自行判断是否敌人。
+public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+
+// 任何生物可能受到伤害后触发，伤害为 0 时也会触发。
+public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature dealer, CardModel cardSource)
+```
+
+- `Creature.IsPrimaryEnemy` / `Creature.IsSecondaryEnemy` 判断敌人
+- `DamageResult.UnblockedDamage` 为未格挡伤害，`BlockedDamage` / `TotalDamage` 同理
+
+## 生命值指令（v0.111.0）
+
+| 方法 | 说明 |
+|---|---|
+| `CreatureCmd.GainMaxHp(Creature, decimal)` | 只提升最大生命值，不动当前生命值 |
+| `CreatureCmd.LoseMaxHp(PlayerChoiceContext, Creature, decimal, bool isFromCard)` | 降低最大生命值 |
+| `CreatureCmd.Heal(Creature, decimal, bool playAnim)` | 回复当前生命值 |
+| `CreatureCmd.SetCurrentHp(Creature, decimal)` | 直接设定当前生命值 |
+| `CreatureCmd.SetMaxHp(Creature, decimal)` | 直接设定最大生命值 |
+| `CreatureCmd.SetMaxAndCurrentHp(Creature, decimal)` | 同时设定最大与当前生命值 |
+
+`Creature.CurrentHp` / `Creature.MaxHp` 可读当前值与上限。
+
 ## 参考
 
 - RitsuLib 仓库：https://github.com/BAKAOLC/STS2-RitsuLib

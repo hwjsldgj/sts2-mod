@@ -38,16 +38,21 @@ public override CardAssetProfile AssetProfile => new(
 | 命名空间 | 用途 |
 |---|---|
 | `MegaCrit.Sts2.Core.Commands` | 游戏指令（伤害、格挡、抽牌） |
+| `MegaCrit.Sts2.Core.GameActions.Multiplayer` | 出牌上下文 `PlayerChoiceContext` |
 | `MegaCrit.Sts2.Core.Entities.Cards` | 卡牌实体 |
 | `MegaCrit.Sts2.Core.Entities.Characters` | 角色实体 |
 | `MegaCrit.Sts2.Core.Entities.Players` | 玩家实体 |
 | `MegaCrit.Sts2.Core.Entities.Relics` | 遗物实体 |
 | `MegaCrit.Sts2.Core.Localization.DynamicVars` | 动态数值 |
 | `MegaCrit.Sts2.Core.Modding` | Mod 初始化 |
+| `MegaCrit.Sts2.Core.Models.Cards` | 卡牌模型基类 |
+| `MegaCrit.Sts2.Core.Nodes.Combat` | 战斗节点（`NCreatureVisuals`） |
+| `MegaCrit.Sts2.Core.ValueProps` | 数值属性 `ValueProp` |
 | `MegaCrit.Sts2.Core.Logging` | 日志 |
 | `STS2RitsuLib.Interop.AutoRegistration` | 自动注册 |
 | `STS2RitsuLib.Scaffolding.Content` | 内容基类 |
 | `STS2RitsuLib.Scaffolding.Characters` | 角色基类 |
+| `STS2RitsuLib.Scaffolding.Godot` | Godot 节点工厂 |
 
 ## 入口模式
 
@@ -68,9 +73,9 @@ public partial class Entry
 }
 ```
 
-## 攻击指令（v0.111.0）
+## 攻击指令（游戏 API 0.111.0）
 
-`AttackCommand.FromCard` 需要同时传卡牌和 `CardPlay`，只传 `this` 会在运行时抛 `MissingMethodException`。
+`FromCard(卡牌, CardPlay)` 是 0.111.0 的游戏程序集 `sts2.dll` 才有的重载；引用旧版 `sts2.dll` 时只传 `this` 会编译报 `CS1501`，运行时则抛 `MissingMethodException`。
 
 ```csharp
 await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
@@ -89,7 +94,7 @@ await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
 public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
 
 // 任何生物可能受到伤害后触发，伤害为 0 时也会触发。
-public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature dealer, CardModel cardSource)
+public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
 ```
 
 - `Creature.IsPrimaryEnemy` / `Creature.IsSecondaryEnemy` 判断敌人
@@ -107,6 +112,8 @@ public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext
 | `CreatureCmd.SetMaxAndCurrentHp(Creature, decimal)` | 同时设定最大与当前生命值 |
 
 `Creature.CurrentHp` / `Creature.MaxHp` 可读当前值与上限。
+
+格挡同理：`CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay)` 需要带上 `cardPlay`。
 
 ## 参考
 

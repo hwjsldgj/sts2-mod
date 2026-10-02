@@ -12,7 +12,7 @@
 ## 引用
 
 - 游戏 API 通过 `Sts2DataDir` 下的 DLL 引用
-- 模组框架通过 NuGet 包 `STS2.RitsuLib` 引用
+- 模组框架的编译引用走本机 RitsuLib 安装目录（`local.props` 的 `RitsuLibDir`）；NuGet 包 `STS2.RitsuLib` 只用于本机部署与清单版本同步
 - 不新增第三方依赖，除非两人同意
 
 ## 目录职责

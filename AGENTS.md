@@ -1,4 +1,3 @@
-```markdown
 # AI 指令
 
 你正在协助开发《杀戮尖塔2》模组。你可以直接读写文件、运行命令。以下是你必须遵守的规则。
@@ -13,13 +12,23 @@
 - 游戏 API：`MegaCrit.Sts2.*`
 - 框架 API：`STS2RitsuLib.*`
 
+## 语言
+
+- 全过程用中文：对话、文档、注释、提交信息、构建报错与提示文案。
+- 只有标识符、API 名、文件路径、第三方原文保留英文。
+- 中文在 IDE 里显示正常；终端乱码不是改用英文的理由。
+
 ## 开工前必做
 
 1. 运行 `git status --short --branch`，确认当前分支
-2. **判断是否需要切分支**：仅可能破坏性改动、或与合伙人同时改同一区域时切分支；日常改动直接在 `main` 上做。
+2. **判断是否需要切分支**：
+   - 有风险的改动（构建与工程文件、`Molin.json`、依赖、重构、跨模块、影响编译或发布）：必须开分支、推送、走 PR 合并，不允许直接改 `main`。
+   - 低风险改动（文档、单张卡牌、单个遗物）：可直接在 `main` 上做。
    ```
    git checkout -b feat/<简短描述>
+   git checkout -b fix/<简短描述>
    ```
+   PR 标题同样用 `类型：描述` 中文格式。
 3. 阅读参照文件（至少读一个同类）：
    - 卡牌：`MolinCode/Cards/MolinStrike.cs`
    - 遗物：`MolinCode/Relics/MolinRelic.cs`
@@ -36,6 +45,8 @@
 | 角色/卡池/遗物池/药水池 | `MolinCode/Characters/<类名>.cs` |
 | 卡牌图片 | `Molin/images/cards/<类名>.png` |
 | 遗物图片 | `Molin/images/relics/<类名>.png` |
+| 角色图片 | `Molin/images/characters/` |
+| 场景 | `Molin/scenes/characters/` |
 | 中文文本 | `Molin/localization/zhs/*.json` |
 | 英文文本 | `Molin/localization/eng/*.json` |
 
@@ -124,8 +135,10 @@ public override CardAssetProfile AssetProfile => new(
 | 改动目录结构 | `ARCHITECTURE.md` |
 | 改动构建方式 | `README.md` |
 | 改动 API 用法 | `API_NOTES.md` |
+| 做出需要留痕的决策 | `docs/decisions.md` 追加一条 |
+| 完成一次回归验证 | `docs/regression.md` 追加一条 |
 
-文档只追加必要条目，不重写整篇。
+文档只追加必要条目，不重写整篇。本文件只写规则，不写无关紧要的内容。
 
 ---
 
@@ -188,6 +201,9 @@ git commit -m "类型：描述"
 - `重构：` 重构代码
 - `文档：` 文档变更
 - `杂项：` 构建、配置
+- `合并：` 合并分支
+- `流水线：` CI 配置
+- `测试：` 测试相关
 - `格式：` 格式调整
 
 例：
@@ -204,7 +220,9 @@ git commit -m "类型：描述"
 git push -u origin <当前分支名>
 ```
 
-分支工作用 `git push -u origin <当前分支名>`。
+分支工作用 `git push -u origin <当前分支名>`，然后在 GitHub 开 PR（标题用中文 `类型：描述`）再合并。
+
+本机有推送权限，正常 `git push` 即可；**不要用 `--force` 或 `--force-with-lease`**。
 
 ---
 
@@ -245,6 +263,7 @@ git push -u origin <当前分支名>
 - 输出完整文件内容（除非用户明确要求）
 - 解释代码做了什么（用户会自己看）
 - 复述规则
+- 输出过于烦杂的内容
 
 ---
 

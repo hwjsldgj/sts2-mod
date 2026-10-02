@@ -117,7 +117,7 @@ public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext
 
 格挡同理：`CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay)` 需要带上 `cardPlay`。
 
-## 能力（v0.111.0）
+## 能力（游戏 API 0.111.0）
 
 基类 `ModPowerTemplate`，标签 `[RegisterPower]`（无参数）。
 
@@ -164,7 +164,7 @@ public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContex
 await CreatureCmd.Damage(choiceContext, CombatState.HittableEnemies, damage, ValueProp.Unpowered, Owner);
 ```
 
-`ValueProp` 的含义见 `sts2.xml`：`Unblockable` = 类似中毒的生命流失，`Unpowered` = 遗物 / 药水 / 能力造成的伤害，
+`ValueProp` 的含义见游戏安装目录里的 `sts2.xml`（该文件在装游戏的机器上，仓库里没有；本机缺少时就反射 `sts2.dll` 或问 YGG-sudo）：`Unblockable` = 类似中毒的生命流失，`Unpowered` = 遗物 / 药水 / 能力造成的伤害，
 `Move` = 攻击牌与敌人攻击的伤害。
 
 能力本地化 key 是 `MOLIN_POWER_<类名大写>`，写在 `powers` 表（`Molin/localization/<语言>/powers.json`），

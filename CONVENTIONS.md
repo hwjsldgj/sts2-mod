@@ -20,6 +20,7 @@
 - `MolinCode/Entry.cs` — Mod 入口，全局常量和日志
 - `MolinCode/Cards/` — 卡牌类
 - `MolinCode/Characters/` — 角色、卡池、遗物池、药水池
+- `MolinCode/Powers/` — 能力类
 - `MolinCode/Relics/` — 遗物类
 - `Molin/` — Godot 资源
 

@@ -52,8 +52,10 @@
 | 卡牌 | `MolinCode/Cards/<类名>.cs` |
 | 遗物 | `MolinCode/Relics/<类名>.cs` |
 | 角色/卡池/遗物池/药水池 | `MolinCode/Characters/<类名>.cs` |
+| 能力 | `MolinCode/Powers/<类名>.cs` |
 | 卡牌图片 | `Molin/images/cards/<类名>.png` |
 | 遗物图片 | `Molin/images/relics/<类名>.png` |
+| 能力图片 | `Molin/images/powers/<类名>.png` |
 | 角色图片 | `Molin/images/characters/` |
 | 场景 | `Molin/scenes/characters/` |
 | 中文文本 | `Molin/localization/zhs/*.json` |
@@ -66,6 +68,7 @@
 | 卡牌 | `ModCardTemplate` |
 | 遗物 | `ModRelicTemplate` |
 | 角色 | `ModCharacterTemplate<MolinCardPool, MolinRelicPool, MolinPotionPool>` |
+| 能力 | `ModPowerTemplate` |
 | 卡池 | `TypeListCardPoolModel` |
 | 遗物池 | `TypeListRelicPoolModel` |
 | 药水池 | `TypeListPotionPoolModel` |
@@ -75,6 +78,7 @@
 ```csharp
 [RegisterCard(typeof(MolinCardPool))]
 [RegisterRelic(typeof(MolinRelicPool))]
+[RegisterPower]
 [RegisterCharacter]
 [RegisterCharacterStarterCard(typeof(MolinCharacter), 数量)]
 [RegisterCharacterStarterRelic(typeof(MolinCharacter))]
@@ -93,6 +97,7 @@ public override CardAssetProfile AssetProfile => new(
 
 - 卡牌：`MOLIN_CARD_<ID大写>.title` / `.description` / `.smartDescription`
 - 遗物：`MOLIN_RELIC_<ID大写>.title` / `.description` / `.flavor`
+- 能力：`MOLIN_POWER_<ID大写>.title` / `.description`，写在 `localization/<语言>/powers.json`
 - 角色：`MOLIN_CHARACTER_<ID大写>.<字段名>`，字段名见现有 `characters.json`
 - 远古对话：`<远古名>.talk.MOLIN_CHARACTER_<ID大写>.<序号>.<char|next|ancient>`
   - 远古名例：`NEOW`、`DARV`
@@ -130,6 +135,15 @@ public override CardAssetProfile AssetProfile => new(
 4. 更新 `docs/features.md` 的"遗物"段，追加一行
 5. 报告用户需要准备 `Molin/images/relics/<类名>.png`
 
+写一个新能力，必须完成：
+
+1. 创建 `MolinCode/Powers/<类名>.cs`
+2. 追加 `Molin/localization/zhs/powers.json` 条目
+3. 追加 `Molin/localization/eng/powers.json` 条目
+4. 更新 `docs/features.md` 的"能力"段，追加一行
+5. 更新 `docs/assets.md` 的"图片"段与"本地化文件"段
+6. 报告用户需要准备 `Molin/images/powers/<类名>.png`
+
 **缺任何一项，不算完成。**
 
 ---
@@ -138,10 +152,10 @@ public override CardAssetProfile AssetProfile => new(
 
 | 改动 | 必须更新 |
 |---|---|
-| 新增卡牌/遗物/角色 | `docs/features.md` 对应段 |
+| 新增卡牌/遗物/能力/角色 | `docs/features.md` 对应段 |
 | 新增图片 | `docs/assets.md` 的"图片"段 |
 | 新增本地化文件 | `docs/assets.md` 的"本地化文件"段 |
-| 改动目录结构 | `ARCHITECTURE.md` |
+| 改动目录结构 | `ARCHITECTURE.md`、`README.md`、`CONVENTIONS.md` |
 | 改动构建方式 | `README.md` |
 | 改动 API 用法 | `API_NOTES.md` |
 | 做出需要留痕的决策 | `docs/decisions.md` 追加一条 |
@@ -285,6 +299,22 @@ git push -u origin <当前分支名>
   3. 反射 `sts2.dll` 查枚举和类型
   4. 问用户
 - 如果猜了，必须在输出里标注"未验证"，让用户核实后再提交。
+
+---
+
+## 反复出错的操作（不要再犯）
+
+- 提交信息、PR 标题或正文写成英文。
+- 分支名用中文：GitHub 会报 hidden characters，分支名只写 ASCII 英文。
+- 把本机路径写进仓库里的文件（`local.props` 是唯一例外）。
+- 终端里中文乱码就断定文件编码坏了：乱码只是终端问题，先在编辑器里看。
+- 改完代码不编译，或编译不过还提交。
+- 改了行为不同步中英文文本，文本与代码口径不一致。
+- 新增内容类型（如能力）只写代码，不同步本文件、`ARCHITECTURE.md`、`README.md`、`CONVENTIONS.md`。
+- 有风险的改动不开分支、不走 PR，直接并进 `main`。
+- 引用别的机器上的文件（例：游戏安装目录的 `sts2.xml`）不注明来源。
+- 文本文件末尾不留换行（`.editorconfig` 要求 `insert_final_newline`）。
+- 回归记录把没实测的项目写成「通过」。
 
 ---
 

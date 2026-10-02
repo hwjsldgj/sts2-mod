@@ -20,8 +20,8 @@
 
 ## 终端
 
-- 跑命令一律用 `powershell.exe` 或 `cmd.exe`，**不要用 `pwsh`**。
-- 需要非交互执行时写成 `powershell -NoProfile -Command "<命令>"`。
+- 跑命令用当前环境实际可用的 shell（`pwsh`、`powershell.exe` 或 `cmd.exe`），不要假设某一个一定存在。
+- 需要非交互执行时写成 `powershell -NoProfile -Command "<命令>"`；没有 `powershell` 时用 `pwsh -NoProfile -Command "<命令>"`。
 - 会话 PATH 可能缺 `git` 等命令：先用 `Get-Command` / `Test-Path` 定位，再在当次命令里临时补 PATH。
 - **不要把本机路径写进仓库里的任何文件**（`local.props` 已被忽略，是唯一例外）。
 - 命令跑不起来时换 shell 或补 PATH 重试，不要改用英文提示，也不要改提示词。

@@ -1,8 +1,17 @@
 {
   "MOLIN_CARD_MOLIN_STRIKE.title": "模板打击",
-  "MOLIN_CARD_MOLIN_STRIKE.description": "造成 {Damage:diff()} 点伤害。",
-  "MOLIN_CARD_MOLIN_STRIKE.smartDescription": "造成 {Damage:diff()} 点伤害。",
+  "MOLIN_CARD_MOLIN_STRIKE.description": "造成 {Damage:diff()} 点伤害",
+  "MOLIN_CARD_MOLIN_STRIKE.smartDescription": "造成 {Damage:diff()} 点伤害",
   "MOLIN_CARD_MOLIN_DEFEND.title": "模板防御",
-  "MOLIN_CARD_MOLIN_DEFEND.description": "获得 {Block:diff()} 点格挡。",
-  "MOLIN_CARD_MOLIN_DEFEND.smartDescription": "获得 {Block:diff()} 点格挡。"
+  "MOLIN_CARD_MOLIN_DEFEND.description": "获得 {Block:diff()} 点格挡",
+  "MOLIN_CARD_MOLIN_DEFEND.smartDescription": "获得 {Block:diff()} 点格挡",
+  "MOLIN_CARD_COINS_OUT.title": "预备",
+  "MOLIN_CARD_COINS_OUT.description": "获得 {Block:diff()} 点格挡。获得{Power:diff()}层硬币",
+  "MOLIN_CARD_COINS_OUT.smartDescription": "获得 {Block:diff()} 点格挡。获得{Power:diff()}层硬币",
+  "MOLIN_CARD_BLUE_R.title": "贯穿",
+  "MOLIN_CARD_BLUE_R.description": "造成 {Damage:diff()} 点伤害3次",
+  "MOLIN_CARD_BLUE_R.smartDescription": "造成 {Damage:diff()} 点伤害3次",
+  "MOLIN_CARD_CB.title": "兑现",
+  "MOLIN_CARD_CB.description": "造成 {Damage:diff()} 点伤害。若你拥有硬币，将其层数设为 {Power:diff()}，\n并抽取等同于减少层数的牌。",
+  "MOLIN_CARD_CB.smartDescription": "造成 {Damage:diff()} 点伤害。若你拥有硬币，将其层数设为 {Power:diff()}，\n并抽取等同于减少层数的牌。"
 }

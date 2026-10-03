@@ -1,5 +1,5 @@
 {
-  "MOLIN_RELIC_MOLIN_RELIC.title": "模板遗物",
+  "MOLIN_RELIC_MOLIN_RELIC.title": "躯壳",
   "MOLIN_RELIC_MOLIN_RELIC.description": "每有一个敌人死亡，最大生命值和当前生命值各提升 [blue]6[/blue] 点。受到未格挡伤害时，最大生命值与当前生命值同步降低该伤害的一半（向下取整），最低保留 [blue]1[/blue] 点。",
-  "MOLIN_RELIC_MOLIN_RELIC.flavor": "一个用于验证模板工程的示例遗物。"
+  "MOLIN_RELIC_MOLIN_RELIC.flavor": "脆弱的躯壳，需要不断地吸收血肉"
 }

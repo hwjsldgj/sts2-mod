@@ -4,5 +4,8 @@
   "MOLIN_CARD_MOLIN_STRIKE.smartDescription": "Deal {Damage:diff()} damage.",
   "MOLIN_CARD_MOLIN_DEFEND.title": "Template Defend",
   "MOLIN_CARD_MOLIN_DEFEND.description": "Gain {Block:diff()} Block.",
-  "MOLIN_CARD_MOLIN_DEFEND.smartDescription": "Gain {Block:diff()} Block."
+  "MOLIN_CARD_MOLIN_DEFEND.smartDescription": "Gain {Block:diff()} Block.",
+  "MOLIN_CARD_CB.title": "Cash Out",
+  "MOLIN_CARD_CB.description": "Deal {Damage:diff()} damage. If you have Coin, set its stacks to {Power:diff()} and draw cards equal to the stacks lost.",
+  "MOLIN_CARD_CB.smartDescription": "Deal {Damage:diff()} damage. If you have Coin, set its stacks to {Power:diff()} and draw cards equal to the stacks lost."
 }

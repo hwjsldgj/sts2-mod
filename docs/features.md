@@ -8,6 +8,7 @@
 |---|---|---|---|---|---|---|---|
 | `MolinStrike` | 模板打击 | Template Strike | 1 | 攻击 | Basic | 造成 6 点伤害，升级 +3 | 占位 |
 | `MolinDefend` | 模板防御 | Template Defend | 1 | 技能 | Basic | 获得 5 点格挡，升级 +3 | 占位 |
+| `Cb` | 兑现 | Cash Out | 1 | 攻击 | Common | 造成 8 点伤害；若自己拥有硬币，将其层数设为 1，并抽取减少的层数张牌 | 待验证 |
 
 ## 遗物
 
